@@ -1,0 +1,23 @@
+option java_outer_classname = "KafkaMessageEntity";//生成的数据访问类的类名  
+message Person {  
+  required string source = 1;      //来源标识  
+  required string source_type = 2; //来源类型：mysql+DTS
+  required string trail_seq = 3;   //binlog号
+  required string trail_rba = 4;   //binlog中偏移量
+  required string operate = 5;     //操作类型
+  required string operate_time = 6;//操作时间
+  required string db_name = 7;     //库名
+  required string table_name = 8;  //表名
+  
+  message KeyColumnEntity {
+    optional string column_name = 1;
+  	optional string column_value = 2;
+  }
+  repeated KeyColumnEntity key_column = 9; //主键列集合
+  
+  message ColumnEntity {
+    optional string column_name = 1;
+  	optional string column_value = 2;
+  }
+  repeated string column = 10;     //普通列集合
+}
