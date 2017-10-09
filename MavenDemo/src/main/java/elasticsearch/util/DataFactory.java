@@ -10,7 +10,7 @@ import java.util.Map;
 import net.sf.json.JSONObject;
 
 public class DataFactory {
-	public static List<String> dataCreater(String path) throws Exception {
+	public static List<String> dataCreater(String path, String[] columnNameList, String token) throws Exception {
 		
 		FileReader fr = new FileReader(path);
 		BufferedReader br = new BufferedReader(fr);
@@ -18,15 +18,11 @@ public class DataFactory {
 		List<String> dataList = new ArrayList<String>();
 		
 		while((line = br.readLine()) != null){
-			String[] data = line.split("\t");
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("ID", data[0]);
-			map.put("IP", data[1]);
-			map.put("VALUE_DAY", data[2]);
-			map.put("GROUPNAME", data[3]);
-			map.put("TYPE_MACHINE", data[4]);
-			map.put("DATE", data[5]);
-			map.put("TYPE", data[6]);
+			String[] data = line.split(token);
+			Map<String, Object> map = new HashMap<String, Object>();
+			for(int i = 0;i < columnNameList.length;i++){
+				map.put(columnNameList[i], data[i]);
+			}
 			JSONObject jsonObject = JSONObject.fromObject(map);
 			String str = jsonObject.toString();
 			dataList.add(str);

@@ -47,7 +47,7 @@ public class CreateIndex {
 	                        .startObject("properties")
 	                            .startObject("ID").field("type", "string").field("store", "yes").endObject()
 	                            .startObject("IP").field("type", "string").field("store", "yes").endObject()
-	                            .startObject("VALUE_DAY").field("type", "string").field("store", "yes").endObject()
+	                            .startObject("VALUE_DAY").field("type", "double").field("store", "yes").endObject()
 	                            .startObject("GROUPNAME").field("type", "string").field("store", "yes").endObject()
 	                            .startObject("TYPE_MACHINE").field("type", "string").field("store", "yes").endObject()
 	                            .startObject("DATE").field("type", "string").field("store", "yes").endObject()
